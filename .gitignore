@@ -1,1 +1,5 @@
 data/
+dist/
+build/
+ggdata.egg-info
+.ipynb_checkpoints

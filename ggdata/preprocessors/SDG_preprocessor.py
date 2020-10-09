@@ -1,6 +1,6 @@
-from src.preprocessors.preprocessor import Preprocessor
+from ggdata.preprocessors.preprocessor import Preprocessor
 import pandas as pd
-from src.utils.ISOs import add_ISO
+from ggdata.utils.ISOs import add_ISO
 
 
 class SDG_Preprocessor(Preprocessor):
@@ -42,7 +42,7 @@ class SDG_Preprocessor(Preprocessor):
 
     def handle_exceptions(self, df):
 
-        if self.file == 'AB2.1.json':
+        if self.variable == 'AB2.1.json':
             df = df.copy()
             df.loc[df['value'] == '>95', 'value'] = 95
             df.loc[df['value'] == '<5', 'value'] = 5

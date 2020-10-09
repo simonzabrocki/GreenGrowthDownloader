@@ -1,13 +1,13 @@
 import json
 import argparse
 
-from src.downloaders.downloader import SDG_Downloader
-from src.downloaders.downloader import WB_Downloader
-from src.downloaders.downloader import CW_Downloader
+from ggdata.downloaders.downloader import SDG_Downloader
+from ggdata.downloaders.downloader import WB_Downloader
+from ggdata.downloaders.downloader import CW_Downloader
 
-from src.preprocessors.SDG_preprocessor import SDG_Preprocessor
-from src.preprocessors.WB_preprocessor import WB_Preprocessor
-from src.preprocessors.CW_preprocessor import CW_Preprocessor
+from ggdata.preprocessors.SDG_preprocessor import SDG_Preprocessor
+from ggdata.preprocessors.WB_preprocessor import WB_Preprocessor
+from ggdata.preprocessors.CW_preprocessor import CW_Preprocessor
 
 from colorama import Fore, init
 
@@ -74,7 +74,7 @@ def download_from_metaconfig(meta_config, path="data/", SAVE_RAW=False):
         except Exception as e:
             print(Fore.RED + 'Error occured ', e)
 
-        print(f'saving at {path}/{variable}_{API_name}.csv', end=': ')
+        print(f'Saving at {path}/{variable}_{API_name}.csv', end=': ')
 
         try:
             df.to_csv(f'{path}/{variable}_{API_name}.csv', index=False)

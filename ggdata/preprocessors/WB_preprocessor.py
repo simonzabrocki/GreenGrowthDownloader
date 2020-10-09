@@ -1,4 +1,4 @@
-from .preprocessor import Preprocessor
+from ggdata.preprocessors.preprocessor import Preprocessor
 import pandas as pd
 
 
