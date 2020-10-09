@@ -16,6 +16,19 @@
 -------------------
 TODO
 
+# Quick Start
+
+Using the command line, you can simple run the following command to get all the available data
+```
+$python main.py ALL
+```
+
+The tool lets you define and API name choosen from WB, SDG, CW, a path, whether or not saving the raw files.
+For example:
+```
+$python main.py WB --p data/ --r True
+```
+
 # How to
 -------------
 
