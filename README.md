@@ -6,12 +6,11 @@
 
 # Supported APIs
 
-| API           | URL                                                               | Downloading | Preprocessing | Processing |
-|---------------|-------------------------------------------------------------------|-------------|---------------|------------|
-| World bank    | https://api.worldbank.org/v2/country/all/indicator/               | OK          | OK            | TODO       |
-| UNSTAT SDG    | https://unstats.un.org/SDGAPI/v1/sdg/Series/Data                  | OK          | OK            | TODO       |
-| Climate Watch | https://www.climatewatchdata.org/api/v1/data/historical_emissions | OK          | OK            | TODO       |
-
+| API           | URL                                                               | Downloading | Preprocessing |
+|---------------|-------------------------------------------------------------------|-------------|---------------|
+| World bank    | https://api.worldbank.org/v2/country/all/indicator/               | OK          | OK            |
+| UNSTAT SDG    | https://unstats.un.org/SDGAPI/v1/sdg/Series/Data                  | OK          | OK            |
+| Climate Watch | https://www.climatewatchdata.org/api/v1/data/historical_emissions | OK          | OK            |
 
 # Installation
 -------------------

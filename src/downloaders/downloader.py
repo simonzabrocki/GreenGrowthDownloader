@@ -16,8 +16,8 @@ class Downloader(metaclass=abc.ABCMeta):
 
     def get_data(self, params):
         data = self.get_raw_data(params)
-        metadata = {'URL': self.API_URL, 'DownloadDate': str(date.today())}
 
+        metadata = {'URL': self.API_URL, 'DownloadDate': str(date.today())}
         result = {}
         result['data'] = data
         result['metadata'] = metadata
@@ -30,6 +30,7 @@ class Downloader(metaclass=abc.ABCMeta):
 
         with open(path, 'w') as file:
             json.dump(data, file)
+        
         return data
 
 
