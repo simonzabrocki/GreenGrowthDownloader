@@ -22,6 +22,7 @@ def download(API_params, folder_path, downloader):
         except Exception as e:
             print(Fore.RED + 'Something went wrong: ', e)
 
+
 def download_script():
 
     with open('params/APIs/CW.json', 'r') as file:

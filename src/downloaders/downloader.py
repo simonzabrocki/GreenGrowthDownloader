@@ -1,8 +1,7 @@
 import abc
-import logging
 import requests
 import json
-
+from datetime import date
 import wbdata
 
 
@@ -12,8 +11,18 @@ class Downloader(metaclass=abc.ABCMeta):
         return None
 
     @abc.abstractmethod
-    def get_data(self, params):
+    def get_raw_data(self, params):
         pass
+
+    def get_data(self, params):
+        data = self.get_raw_data(params)
+        metadata = {'URL': self.API_URL, 'DownloadDate': str(date.today())}
+
+        result = {}
+        result['data'] = data
+        result['metadata'] = metadata
+
+        return result
 
     def download_data(self, path, params):
 
@@ -26,7 +35,7 @@ class Downloader(metaclass=abc.ABCMeta):
 
 class CW_Downloader(Downloader):
 
-    def get_data(self, params):
+    def get_raw_data(self, params):
         first_request = requests.get(self.API_URL, params=params)
         data = first_request.json()['data']
 
@@ -50,7 +59,7 @@ class CW_Downloader(Downloader):
 
 class SDG_Downloader(Downloader):
 
-    def get_data(self, params):
+    def get_raw_data(self, params):
 
         params['pageSize'] = int(1e9)
         request = requests.get(self.API_URL, params=params)
@@ -60,27 +69,22 @@ class SDG_Downloader(Downloader):
 
 class WB_Downloader(Downloader):
 
-    def get_data(self, params):
+    def get_raw_data(self, params):
         indicator = params['indicator']
         url = f'{self.API_URL}/{indicator}'
         params = {'format': 'json', 'per_page': 1}
-
         # request to get the number of element and make a full request
         pre_request = requests.get(url, params=params)
-
 
         total = pre_request.json()[0]['total']
         params['per_page'] = total
 
-
         # actual request
-        logger.debug(f'Full request status code {request.status_code}')
+
+        request = requests.get(url, params=params)
 
         data = request.json()
 
         data[0]['Source'] = wbdata.get_indicator(indicator)[0]['sourceOrganization']  # Well maybe we could just use wbdata alltogether :/
 
         return data
-
-
-
