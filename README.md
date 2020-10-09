@@ -2,9 +2,6 @@
 
 # Green Growth Downloader
 ------------------------------------
->Green Growth Index measures country performance in achieving sustainability targets including Sustainable Development Goals, Paris Climate Agreement, and Aichi Biodiversity Targets for four green growth dimensions – efficient and sustainable resource use, natural capital protection, green economic opportunities and social inclusion.
-
-
 **This module downloads and format data used in the Green Growth Index**
 
 # Supported APIs
@@ -46,5 +43,4 @@ Index = GGI.compute(indicators=indicators, sustainability_targets=ST)
 # Authors
 ---------------
 
-H. Peyrière, S. Zabrocki for the Global Green Growth Institute.
-(To expand)
+S. Zabrocki for the Global Green Growth Institute.

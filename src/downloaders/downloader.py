@@ -30,7 +30,7 @@ class Downloader(metaclass=abc.ABCMeta):
 
         with open(path, 'w') as file:
             json.dump(data, file)
-        return None
+        return data
 
 
 class CW_Downloader(Downloader):
