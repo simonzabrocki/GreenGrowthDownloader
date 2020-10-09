@@ -25,19 +25,26 @@ See **tutorial notebooks** for more details.
 ## Get raw data for a given config
 
 ```python
-from IndexComputation.GreenGrowthIndex import *
+from src.downloaders.downloader import SDG_Downloader
 
-ST = pd.read_csv('sample_data/ST.csv',
-                 sep=';',
-                 header=0,
-                 index_col=0)
+Downloader = SDG_Downloader('https://unstats.un.org/SDGAPI/v1/sdg/Series/Data')
 
-indicators = pd.read_csv('sample_data/Indicators.csv', index_col=0)
+parameters = {'seriesCode': 'SL_TLF_NEET',
+              'dimensions': "[{name:'Sex',values:['BOTHSEX']},{name:'Age',values:['15-24']}]"}
 
+data = Downloader.get_data(parameters)
+```
 
-GGI = GreenGrowthIndex()
+## Preprocess raw data
 
-Index = GGI.compute(indicators=indicators, sustainability_targets=ST)
+```python
+from src.preprocessors.SDG_preprocessor import SDG_Preprocessor
+
+Preprocessor = SDG_Preprocessor(file='test') # file argument to change (Used to preprocess special cases)
+
+information = {'Variable': 'Test', 'From': 'SDG API'} # Let's you add more information to the dataframe
+
+df = Preprocessor.preprocess(data, information)
 ```
 
 # Authors
