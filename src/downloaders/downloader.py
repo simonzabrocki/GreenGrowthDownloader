@@ -30,7 +30,7 @@ class Downloader(metaclass=abc.ABCMeta):
 
         with open(path, 'w') as file:
             json.dump(data, file)
-        
+
         return data
 
 
@@ -62,7 +62,7 @@ class SDG_Downloader(Downloader):
 
     def get_raw_data(self, params):
 
-        params['pageSize'] = int(1e9)
+        params['pageSize'] = int(1e9) # Set large number to get all the data, avoid 2 calls
         request = requests.get(self.API_URL, params=params)
         data = request.json()['data']
         return data
@@ -74,18 +74,17 @@ class WB_Downloader(Downloader):
         indicator = params['indicator']
         url = f'{self.API_URL}/{indicator}'
         params = {'format': 'json', 'per_page': 1}
+
         # request to get the number of element and make a full request
         pre_request = requests.get(url, params=params)
-
         total = pre_request.json()[0]['total']
         params['per_page'] = total
 
         # actual request
-
         request = requests.get(url, params=params)
-
         data = request.json()
 
+        # add source
         data[0]['Source'] = wbdata.get_indicator(indicator)[0]['sourceOrganization']  # Well maybe we could just use wbdata alltogether :/
 
         return data

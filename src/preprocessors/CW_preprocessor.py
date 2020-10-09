@@ -25,31 +25,3 @@ class CW_Preprocessor(Preprocessor):
 
     def convert_dtypes(self, df):
         return df
-
-
-def process_GE1_0(df):
-    df = df.copy()
-    df['Description'] = df['gas'] + ' ' + df['sector'] + ' ' + df['unit']
-    return df
-
-
-def process_GE2_0(df):
-    res = pd.DataFrame()
-    res = df.groupby(['iso_code3', 'year', 'sector', 'country', 'data_source'])['value'].sum().reset_index()
-    Agri = res[res.sector == 'Agriculture'].set_index(['iso_code3', 'year', 'country', 'data_source']).drop(columns='sector')
-    LUCF = res[res.sector == 'Total excluding LUCF'].set_index(['iso_code3', 'year', 'country', 'data_source']).drop(columns='sector')
-    res = (LUCF - Agri).reset_index()
-    description = ' '.join(df.gas.unique()) + ' ' + ' and excluding'.join(df.sector.unique()) + ' ' + ' '.join(df.unit.unique())
-    res['Description'] = description
-    return res
-
-
-def process_GE3_0(df):
-    res = pd.DataFrame()
-    res = df.groupby(['iso_code3', 'year', 'sector', 'country', 'data_source'])['value'].sum().reset_index()
-    Agri = res[res.sector == 'Agriculture'].set_index(['iso_code3', 'year', 'country', 'data_source']).drop(columns='sector')
-    LUCF = res[res.sector == 'Land-Use Change and Forestry'].set_index(['iso_code3', 'year', 'country', 'data_source']).drop(columns='sector')
-    res = (LUCF + Agri).reset_index()
-    description = ' '.join(df.gas.unique()) + ' ' + ' and '.join(df.sector.unique()) + ' ' + ' '.join(df.unit.unique())
-    res['Description'] = description
-    return res

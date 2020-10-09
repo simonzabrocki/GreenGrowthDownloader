@@ -9,6 +9,8 @@ from src.preprocessors.SDG_preprocessor import SDG_Preprocessor
 from src.preprocessors.WB_preprocessor import WB_Preprocessor
 from src.preprocessors.CW_preprocessor import CW_Preprocessor
 
+from colorama import Fore, init
+
 meta_configs = {
 
     'WB': {
@@ -54,34 +56,35 @@ def download_from_metaconfig(meta_config, path="data/", SAVE_RAW=False):
 
         try:
             if SAVE_RAW:
-                data = Downloader.download_data(path=f"{path}/{dictionnary['GGI_code']}.json",params=params)
+                data = Downloader.download_data(path=f"{path}/{dictionnary['GGI_code']}.json", params=params)
             else:
                 data = Downloader.get_data(params)
-            print('DONE')
+            print(Fore.GREEN + 'DONE')
         except Exception as e:
-            print('Error occured ', e)
+            print(Fore.RED + 'Error occured ', e)
 
         print('PreProcessing', end=': ')
         variable = dictionnary['GGI_code']
-        Preprocessor = meta_config['preprocessor'](file=variable)
+        Preprocessor = meta_config['preprocessor'](variable)
         information = {'Variable': variable, 'From': meta_config['API']}
 
         try:
             df = Preprocessor.preprocess(data, information)
-            print('DONE')
+            print(Fore.GREEN + 'DONE')
         except Exception as e:
-            print('Error occured ', e)
+            print(Fore.RED + 'Error occured ', e)
 
         print(f'saving at {path}/{variable}_{API_name}.csv', end=': ')
 
         try:
             df.to_csv(f'{path}/{variable}_{API_name}.csv', index=False)
-            print('DONE')
+            print(Fore.GREEN + 'DONE')
         except Exception as e:
-            print('Error occured ', e)
+            print(Fore.RED + 'Error occured ', e)
 
 
 if __name__ == '__main__':
+    init(autoreset=True)
 
     parser = argparse.ArgumentParser(description='Download and preprocess data.')
     parser.add_argument('API', metavar='API', type=str, help='A supported API name.')
@@ -89,4 +92,9 @@ if __name__ == '__main__':
     parser.add_argument('--r', metavar='raw', type=bool, default=False, help='Save raw ouput')
 
     args = parser.parse_args()
-    download_from_metaconfig(meta_configs[args.API], args.p, args.r)
+    if args.API == 'ALL':
+        print(f"Downloading and Processing APIs: {' '.join(meta_configs.keys())}")
+        for meta_config_name in meta_configs:
+            download_from_metaconfig(meta_configs[meta_config_name], args.p, args.r)
+    else:
+        download_from_metaconfig(meta_configs[args.API], args.p, args.r)
