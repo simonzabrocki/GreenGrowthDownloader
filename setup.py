@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='ggdata',
-    version='0.1.3',
+    version='0.1.19',
     description='A Python package for downloading data from public APIs',
     url='https://github.com/simonzabrocki/GreenGrowthDownloader',
     author='Simon Zabrocki',
@@ -10,7 +10,6 @@ setup(
     license='BSD 2-clause',
     install_requires=[],
     packages=find_packages(),
-
     classifiers=[
         'Development Status :: 1 - Planning',
         'Intended Audience :: Science/Research',
@@ -18,4 +17,8 @@ setup(
         'Operating System :: POSIX :: Linux',
         'Programming Language :: Python :: 3.6',
     ],
+    include_package_data=True,
+    package_data={
+        '': ['params/*.json']
+    }
 )

@@ -16,7 +16,7 @@ meta_configs = {
     'WB': {
         'API': 'WB API',
         'URL': 'https://api.worldbank.org/v2/country/all/indicator/',
-        'config': 'params/APIs/WB.json',
+        'config': 'ggdata/params/WB.json',
         'downloader': WB_Downloader,
         'preprocessor': WB_Preprocessor,
     },
@@ -24,14 +24,14 @@ meta_configs = {
         'API': 'SDG API',
         'URL': 'https://unstats.un.org/SDGAPI/v1/sdg/Series/Data',
         'downloader': SDG_Downloader,
-        'config': 'params/APIs/SDG.json',
+        'config': 'ggdata/params/SDG.json',
         'preprocessor': SDG_Preprocessor,
     },
     'CW': {
         'API': 'CW API',
         'URL': 'https://www.climatewatchdata.org/api/v1/data/historical_emissions',
         'downloader': CW_Downloader,
-        'config': 'params/APIs/CW.json',
+        'config': 'ggdata/params/CW.json',
         'preprocessor': CW_Preprocessor,
     }
 }
