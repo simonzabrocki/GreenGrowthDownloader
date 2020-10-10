@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='ggdata',
-    version='0.1.19',
+    version='0.1.22',
     description='A Python package for downloading data from public APIs',
     url='https://github.com/simonzabrocki/GreenGrowthDownloader',
     author='Simon Zabrocki',
