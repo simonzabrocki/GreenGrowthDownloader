@@ -1,10 +1,7 @@
 from setuptools import setup, find_packages
-import pkg_resources
-
 
 with open('README.md', encoding='utf-8') as f:
     long_description = f.read()
-#reqs = [str(req) for req in pkg_resources.parse_requirements('requirements.txt')]
 
 
 setup(
@@ -15,7 +12,6 @@ setup(
     author='Simon Zabrocki',
     author_email='simon.zabrocki@gmail.com',
     license='BSD 2-clause',
-    #install_requires=reqs,
     long_description=long_description,
     long_description_content_type='text/markdown',
     packages=find_packages(),

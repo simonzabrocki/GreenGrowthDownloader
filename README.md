@@ -18,15 +18,19 @@ TODO
 
 # Quick Start
 
-Using the command line, you can simple run the following command to get all the available data
+Using the command line, you can simple run the following command to get the data for a given API.
 ```
-$python main.py ALL
+python main.py WB
 ```
 
-The tool lets you define and API name choosen from WB, SDG, CW, a path, whether or not saving the raw files.
+The tool lets you define and API name, a path.
 For example:
+- To download from WB data set WB
+- To save in data/ folder set --path data/
+- To download raw data set --raw true
+- To download only missing data set --restart false
 ```
-$python main.py WB --p data/ --r True
+$python main.py WB --path data/ --raw true --restart false
 ```
 
 # How to
