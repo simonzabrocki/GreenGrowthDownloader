@@ -14,7 +14,12 @@
 
 # Installation
 -------------------
-TODO
+
+```
+$git clone https://github.com/simonzabrocki/GreenGrowthDownloader.git
+```
+
+Later to be added on pip !
 
 # Quick Start
 
