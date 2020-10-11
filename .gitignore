@@ -3,3 +3,6 @@ dist/
 build/
 ggdata.egg-info
 .ipynb_checkpoints
+pyenv.cfg
+lib/
+bin/

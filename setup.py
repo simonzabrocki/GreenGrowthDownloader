@@ -1,14 +1,23 @@
 from setuptools import setup, find_packages
+import pkg_resources
+
+
+with open('README.md', encoding='utf-8') as f:
+    long_description = f.read()
+#reqs = [str(req) for req in pkg_resources.parse_requirements('requirements.txt')]
+
 
 setup(
     name='ggdata',
-    version='0.1.22',
+    version='0.1.24',
     description='A Python package for downloading data from public APIs',
     url='https://github.com/simonzabrocki/GreenGrowthDownloader',
     author='Simon Zabrocki',
     author_email='simon.zabrocki@gmail.com',
     license='BSD 2-clause',
-    install_requires=[],
+    #install_requires=reqs,
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     packages=find_packages(),
     classifiers=[
         'Development Status :: 1 - Planning',
