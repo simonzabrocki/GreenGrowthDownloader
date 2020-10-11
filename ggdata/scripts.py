@@ -71,7 +71,7 @@ def download(API_name, config, path=None, raw=True, API_CONFIGS=API_CONFIGS):
     # Saving Raw
     if raw:
         if path:
-            file_path = f"{path}/{GGI_code}_{API_name}.json"
+            file_path = f"{path}{GGI_code}_{API_name}.json"
             print(f'Saving at {file_path}', end=': ')
             try:
                 with open(file_path, 'w') as file:
@@ -91,7 +91,7 @@ def download(API_name, config, path=None, raw=True, API_CONFIGS=API_CONFIGS):
             print(Fore.RED + 'Error occured ', e)
 
         if path:
-            file_path = f'{path}/{GGI_code}_{API_name}.csv'
+            file_path = f'{path}{GGI_code}_{API_name}.csv'
             print(f'Saving at {file_path}', end=': ')
             try:
                 df.to_csv(file_path, index=False)
@@ -99,7 +99,7 @@ def download(API_name, config, path=None, raw=True, API_CONFIGS=API_CONFIGS):
             except Exception as e:
                 print(Fore.RED + 'Error occured ', e)
 
-    return data
+    return df
 
 
 def download_all(API_name, path=None, raw=True, restart=False, API_CONFIGS=API_CONFIGS):

@@ -63,34 +63,24 @@ To make specific downloads, refer to the following section
 # How to
 -------------
 
-See **tutorial notebooks** for more details.
+See **Tutorial.ipynb** for more details.
 
-## Get raw data for a given config
-
-```python
-from src.downloaders.downloader import SDG_Downloader
-
-Downloader = SDG_Downloader('https://unstats.un.org/SDGAPI/v1/sdg/Series/Data')
-
-parameters = {'seriesCode': 'SL_TLF_NEET',
-              'dimensions': "[{name:'Sex',values:['BOTHSEX']},{name:'Age',values:['15-24']}]"}
-
-data = Downloader.get_data(parameters)
-```
-
-## Preprocess raw data
+## Get data for a given indicator at a given API
 
 ```python
-from src.preprocessors.SDG_preprocessor import SDG_Preprocessor
+from ggdata.scripts import download
 
-Preprocessor = SDG_Preprocessor(file='test') # file argument to change (Used to preprocess special cases)
+API_name = 'WB'
 
-information = {'Variable': 'Test', 'From': 'SDG API'} # Let's you add more information to the dataframe
+config = {
+    'GGI_code': 'EE2',
+    'params': {'indicator': 'EG.FEC.RNEW.ZS'}
+}
 
-df = Preprocessor.preprocess(data, information)
+data = download(API_name, config,raw=False)
 ```
 
 # Authors
 ---------------
 
-S. Zabrocki for the Global Green Growth Institute.
+S. Zabrocki for GGGI
