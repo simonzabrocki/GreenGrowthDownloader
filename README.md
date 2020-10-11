@@ -23,7 +23,7 @@ Later to be added on pip !
 
 # Quick Start
 
-The tool lets you define and API name, a path.
+A small command line tool has been made to make 'bulk downloads'. The tool lets you define and API name, a path.
 For example:
 - To download from WB data set WB
 - To save in data/ folder set --path data/
@@ -32,6 +32,33 @@ For example:
 ```
 $python main.py WB --path data/ --raw true --restart false
 ```
+The information used to make the download are located in the ggdata/params folder.
+
+Here is an example ggdata/params/SDG.json:
+
+```
+[
+   {
+      "GGI_code":"SE3",
+      "params":{
+         "seriesCode":"SL_TLF_NEET",
+         "dimensions":"[{name:'Sex',values:['BOTHSEX']},{name:'Age',values:['15-24']}]"
+      }
+   },
+   {
+      "GGI_code":"EE1",
+      "params":{
+         "seriesCode":"EG_EGY_PRIM"
+      }
+   },
+
+   ... TO CONTINUE ...
+
+]
+```
+You can add information about new variable you need in the files.
+
+To make specific downloads, refer to the following section
 
 # How to
 -------------
