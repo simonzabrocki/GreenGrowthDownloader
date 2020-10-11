@@ -2,12 +2,27 @@ import abc
 
 
 class Preprocessor(metaclass=abc.ABCMeta):
+    '''
+    Abstract processor class used to preprocess data coming from API
+
+    Attributes
+    ----------
+    variable: str
+        Name of the variable to be preprocessed (Used to handle special cases)
+    '''
 
     def __init__(self, variable):
         self.variable = variable
         return None
 
     def parse_json(self, json):
+        '''
+
+        Parameters
+        ---------
+        json: list of dictionnary
+            The loaded json file
+        '''
         metadata_json = json['metadata']
         data_json = json['data']
 

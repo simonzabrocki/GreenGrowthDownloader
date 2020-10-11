@@ -5,9 +5,9 @@ from ggdata.preprocessors.CW import CW_Preprocessor
 from ggdata.ressources import load_API_parameters
 from colorama import Fore, init
 import json
+import os
 
 init(autoreset=True)
-
 
 API_CONFIGS = {
     'WB': {
@@ -94,16 +94,24 @@ def download(API_name, config, path=None, raw=True, API_CONFIGS=API_CONFIGS):
             print(f'Saving at {file_path}', end=': ')
             try:
                 df.to_csv(file_path, index=False)
-                print(Fore.GREEN + f'DONE')
+                print(Fore.GREEN + 'DONE')
             except Exception as e:
                 print(Fore.RED + 'Error occured ', e)
 
     return data
 
 
-def download_all(API_name, path=None, raw=True, API_CONFIGS=API_CONFIGS):
+def download_all(API_name, path=None, raw=True, restart=False, API_CONFIGS=API_CONFIGS):
     '''
     Wrapping for loop for downloading the full specified data on an API
     '''
+    existing_files = os.listdir(path)
+
     for config in API_CONFIGS[API_name]['configs']:
-        download(API_name=API_name, config=config, path=path, raw=raw)
+        file_name = f"{config['GGI_code']}_{API_name}.csv"
+
+        if not restart:
+            if file_name not in existing_files:
+                download(API_name=API_name, config=config, path=path, raw=raw)
+        else:
+            download(API_name=API_name, config=config, path=path, raw=raw)
