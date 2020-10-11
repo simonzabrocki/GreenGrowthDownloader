@@ -18,11 +18,6 @@ TODO
 
 # Quick Start
 
-Using the command line, you can simple run the following command to get the data for a given API.
-```
-python main.py WB
-```
-
 The tool lets you define and API name, a path.
 For example:
 - To download from WB data set WB
