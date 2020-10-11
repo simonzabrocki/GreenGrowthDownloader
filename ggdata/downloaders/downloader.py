@@ -62,7 +62,7 @@ class SDG_Downloader(Downloader):
 
     def get_raw_data(self, params):
 
-        params['pageSize'] = int(1e9) # Set large number to get all the data, avoid 2 calls
+        params['pageSize'] = int(1e9)  # Set large number to get all the data, avoid 2 calls
         request = requests.get(self.API_URL, params=params)
         data = request.json()['data']
         return data
