@@ -3,6 +3,7 @@ dist/
 build/
 ggdata.egg-info
 .ipynb_checkpoints
-pyenv.cfg
+pyvenv.cfg
 lib/
 bin/
+MANIFEST.in
