@@ -9,6 +9,7 @@ import os
 
 init(autoreset=True)
 
+# VERY IMPORTANT DICT, CONTAINS ALL THE INFO FOR PROCESSING
 API_CONFIGS = {
     'WB': {
         'API': 'WB API',
@@ -104,6 +105,18 @@ def download(API_name, config, path=None, raw=True, API_CONFIGS=API_CONFIGS):
 def download_all(API_name, path=None, raw=True, restart=False, API_CONFIGS=API_CONFIGS):
     '''
     Wrapping for loop for downloading the full specified data on an API
+        Parameters
+        ----------
+        API_name: str
+            The name of the API
+        path: str
+            Path for saving
+        raw: Bool
+            whether to download the raw data or the preprocessed one.
+        restart: Bool
+            whether to download the full data or just the missing one.
+        API_CONFIGS:
+            The configs of the APIs
     '''
     existing_files = os.listdir(path)
 

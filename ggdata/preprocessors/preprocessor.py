@@ -17,6 +17,7 @@ class Preprocessor(metaclass=abc.ABCMeta):
 
     def parse_json(self, json):
         '''
+        Parse the json file
 
         Parameters
         ---------
@@ -30,10 +31,26 @@ class Preprocessor(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def json_to_pandas(self, data_json):
+        '''
+        Convert the json to pandas
+
+        Parameters
+        ---------
+        data_json: list of dictionnary
+            The data from the json file
+        '''
         pass
 
     @abc.abstractmethod
     def format_pandas(self, df):
+        '''
+        Format the raw pandas
+
+        Parameters
+        ---------
+        df: pd.DataFrame
+            Raw DataFrame
+        '''
         pass
 
     @abc.abstractmethod
@@ -45,6 +62,20 @@ class Preprocessor(metaclass=abc.ABCMeta):
         pass
 
     def add_information_pandas(self, df, information, metadata_json):
+        '''
+        Add information to the pandas
+
+        Parameters
+        ---------
+        df: pd.DataFrame
+            Formated DataFrame
+        information: dict
+            A dictionnary with the information to add (eg. download data, variable name etc ...)
+
+        Returns
+        -------
+        df: pd.DataFrame
+        '''
         df = df.copy()
         for key in information:
             df[key] = information[key]
@@ -53,6 +84,20 @@ class Preprocessor(metaclass=abc.ABCMeta):
         return df
 
     def preprocess(self, data_json, information):
+        '''
+        Preprocess a given json file and complete with the relevant information
+
+        Parameters
+        ---------
+        ddata_json: json
+            Raw loaded json file
+        information: dict
+            A dictionnary with the information to add (eg. download data, variable name etc ...)
+
+        Returns
+        -------
+        df: pd.DataFrame
+        '''
         metadata_json, df = self.parse_json(data_json)
         for step in [self.json_to_pandas, self.handle_exceptions, self.format_pandas, self.convert_dtypes]:
             df = step(df)

@@ -3,7 +3,9 @@ import pandas as pd
 
 
 class WB_Preprocessor(Preprocessor):
-
+    '''
+    Processor class used to preprocess data coming from WB API
+    '''
     def json_to_pandas(self, data_json):
         df = pd.json_normalize(data_json[1])
         df['Source'] = data_json[0]['Source']

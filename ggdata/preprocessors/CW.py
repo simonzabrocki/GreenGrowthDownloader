@@ -3,8 +3,18 @@ import pandas as pd
 
 
 class CW_Preprocessor(Preprocessor):
-
+    '''
+    Processor class used to preprocess data coming from CW API
+    '''
     def dict_to_df(self, dictionnary):
+        '''
+        Convert a dict to a dataframe
+
+        Parameters
+        ---------
+        dictionnary: dictionnary
+            dictionnary output by the CW API
+        '''
         df = pd.DataFrame(dictionnary['emissions'])
 
         for key in dictionnary.keys():

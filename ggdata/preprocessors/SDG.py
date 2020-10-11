@@ -4,7 +4,9 @@ from ggdata.utils.ISOs import add_ISO
 
 
 class SDG_Preprocessor(Preprocessor):
-
+    '''
+    Processor class used to preprocess data coming from SDG API
+    '''
     def json_to_pandas(self, json):
         df = pd.json_normalize(json)
         columns = df.columns
@@ -42,7 +44,7 @@ class SDG_Preprocessor(Preprocessor):
 
     def handle_exceptions(self, df):
 
-        if self.variable == 'AB2.1.json':
+        if self.variable == 'AB2.1':
             df = df.copy()
             df.loc[df['value'] == '>95', 'value'] = 95
             df.loc[df['value'] == '<5', 'value'] = 5
