@@ -30,9 +30,9 @@ For example:
 - To download raw data set --raw true
 - To download only missing data set --restart false
 ```
-$python main.py WB --path data/ --raw true --restart false
+$ggdownload WB --path data/ --raw true --restart false
 ```
-The information used to make the download are located in the ggdata/params folder.
+The information used to make the downloads are located in the ggdata/params folder.
 
 Here is an example ggdata/params/SDG.json:
 
@@ -52,13 +52,11 @@ Here is an example ggdata/params/SDG.json:
       }
    },
 
-   ... TO CONTINUE ...
+   ... AND SO ON ...
 
 ]
 ```
-You can add information about new variable you need in the files.
-
-To make specific downloads, refer to the following section
+You can add information about new variable you need in the files. See Tutorial.ipynb for formatting
 
 # How to
 -------------
@@ -77,8 +75,14 @@ config = {
     'params': {'indicator': 'EG.FEC.RNEW.ZS'}
 }
 
-data = download(API_name, config,raw=False)
+data = download(API_name, config, raw=False)
 ```
+
+# Future improvements
+-------------
+In the future, it would be very relevant to standardize parameters across APIs to be able to simplify getting data. (eg, the indicator name is seriesCode in SDG but indicator in WB and so on...)
+
+An annex package to automatically process this data into GreenGrowthData is being developed in parallel.
 
 # Authors
 ---------------
