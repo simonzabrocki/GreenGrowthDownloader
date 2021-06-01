@@ -4,7 +4,9 @@ import logging
 logging.disable(logging.WARNING)
 
 
+
 def add_ISO(df):
+    '''Deprecated to remove'''
     df = df.copy()
 
     def filter_ISO(ISO):

@@ -36,7 +36,9 @@ class Downloader(metaclass=abc.ABCMeta):
         '''
         data = self.get_raw_data(params)
 
-        metadata = {'URL': self.API_URL, 'DownloadDate': str(date.today())}
+        p = requests.Request('GET', self.API_URL, params=params).prepare().url
+
+        metadata = {'URL': p, 'DownloadDate': str(date.today())}
         result = {}
         result['data'] = data
         result['metadata'] = metadata
@@ -117,6 +119,7 @@ class WB_Downloader(Downloader):
 
         # actual request
         request = requests.get(url, params=params)
+
         data = request.json()
 
         # add source

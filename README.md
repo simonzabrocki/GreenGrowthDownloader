@@ -84,7 +84,7 @@ In the future, it would be very relevant to standardize parameters across APIs t
 
 An annex package to automatically process this data into GreenGrowthData is being developed in parallel.
 
-# Authors
+# Author
 ---------------
 
 S. Zabrocki for GGGI
