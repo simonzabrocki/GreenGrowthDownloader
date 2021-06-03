@@ -17,10 +17,10 @@
 -------------------
 
 ```
-$git clone https://github.com/simonzabrocki/GreenGrowthDownloader.git
+$pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple  ggdata==0.1.32
 ```
 
-Later to be added on pip !
+Later to be added on proper pip.
 
 # How to
 -------------
