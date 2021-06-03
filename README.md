@@ -2,7 +2,7 @@
 
 # Green Growth Downloader
 ------------------------------------
-**This module downloads and format data used in the Green Growth Index**
+**This module downloads and standardize data from various public APIs**
 
 # Supported APIs
 
@@ -11,6 +11,7 @@
 | World bank    | https://api.worldbank.org/v2/country/all/indicator/               | OK          | OK            |
 | UNSTAT SDG    | https://unstats.un.org/SDGAPI/v1/sdg/Series/Data                  | OK          | OK            |
 | Climate Watch | https://www.climatewatchdata.org/api/v1/data/historical_emissions | OK          | OK            |
+| OECD          | http://stats.oecd.org/SDMX-JSON/data/                             | TO DO       | TO DO         |
 
 # Installation
 -------------------
@@ -21,21 +22,44 @@ $git clone https://github.com/simonzabrocki/GreenGrowthDownloader.git
 
 Later to be added on pip !
 
-# Quick Start
+# How to
+-------------
 
-A small command line tool has been made to make 'bulk downloads'. The tool lets you define and API name, a path.
+See **Tutorial.ipynb** for details.
+
+## Get data for a given indicator at a given API
+
+```python
+from ggdata.scripts import download
+
+API_name = 'WB'
+
+config = {
+    'GGI_code': 'EE2',
+    'params': {'indicator': 'EG.FEC.RNEW.ZS'}
+}
+
+data = download(API_name, config, raw=False)
+```
+
+# Quick Start for Green Growth Index
+(To be improved)
+
+A small command line tool is available to bulk download data. The tool lets you define an API name and a path.
 For example:
+
+```
+$ggdownload WB --path data/ --raw true --restart false
+```
+
 - To download from WB data set WB
 - To save in data/ folder set --path data/
 - To download raw data set --raw true
 - To download only missing data set --restart false
-```
-$ggdownload WB --path data/ --raw true --restart false
-```
+
 The information used to make the downloads are located in the ggdata/params folder.
 
 Here is an example ggdata/params/SDG.json:
-
 ```
 [
    {
@@ -56,33 +80,15 @@ Here is an example ggdata/params/SDG.json:
 
 ]
 ```
-You can add information about new variable you need in the files. See Tutorial.ipynb for formatting
 
-# How to
--------------
 
-See **Tutorial.ipynb** for more details.
-
-## Get data for a given indicator at a given API
-
-```python
-from ggdata.scripts import download
-
-API_name = 'WB'
-
-config = {
-    'GGI_code': 'EE2',
-    'params': {'indicator': 'EG.FEC.RNEW.ZS'}
-}
-
-data = download(API_name, config, raw=False)
-```
 
 # Future improvements
 -------------
-In the future, it would be very relevant to standardize parameters across APIs to be able to simplify getting data. (eg, the indicator name is seriesCode in SDG but indicator in WB and so on...)
+Standardize parameters across APIs to be able to simplify getting data. (eg, the indicator name is seriesCode in SDG but indicator in WB and so on...)
 
-An annex package to automatically process this data into GreenGrowthData is being developed in parallel.
+Add functions to search indicators across APIs
+
 
 # Author
 ---------------

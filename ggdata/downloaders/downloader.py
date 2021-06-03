@@ -126,3 +126,11 @@ class WB_Downloader(Downloader):
         data[0]['Source'] = wbdata.get_indicator(indicator)[0]['sourceOrganization']  # Well maybe we could just use wbdata alltogether :/
 
         return data
+    
+    
+class OECD_Downloader(Downloader):
+    '''
+    Class to download data coming from WB API
+    '''
+    def get_raw_data(self, params):
+        pass
