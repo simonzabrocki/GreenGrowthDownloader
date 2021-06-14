@@ -34,15 +34,9 @@ class Downloader(metaclass=abc.ABCMeta):
         params: dictionnary
             dictionnary with the API parameters
         '''
-        data = self.get_raw_data(params)
-
-        p = requests.Request('GET', self.API_URL, params=params).prepare().url
-
-        metadata = {'URL': p, 'DownloadDate': str(date.today())}
-        result = {}
-        result['data'] = data
-        result['metadata'] = metadata
-
+        data, url = self.get_raw_data(params)
+        metadata = {'URL': url, 'DownloadDate': str(date.today())}
+        result = {'data': data, 'metadata' : metadata}
         return result
 
     def download_data(self, path, params):
@@ -88,7 +82,7 @@ class CW_Downloader(Downloader):
             else:
                 has_next = False
 
-        return data
+        return data, first_request.url
 
 
 class SDG_Downloader(Downloader):
@@ -100,7 +94,7 @@ class SDG_Downloader(Downloader):
         params['pageSize'] = int(1e9)  # Set large number to get all the data, avoid 2 calls
         request = requests.get(self.API_URL, params=params)
         data = request.json()['data']
-        return data
+        return data, request.url
 
 
 class WB_Downloader(Downloader):
@@ -125,12 +119,18 @@ class WB_Downloader(Downloader):
         # add source
         data[0]['Source'] = wbdata.get_indicator(indicator)[0]['sourceOrganization']  # Well maybe we could just use wbdata alltogether :/
 
-        return data
+        return data, request.url
     
     
 class OECD_Downloader(Downloader):
     '''
-    Class to download data coming from WB API
+    Class to download data coming from OECD API
     '''
     def get_raw_data(self, params):
-        pass
+        mandatory = params['mandatory']
+        optional = params['optional']
+        url = f"{self.API_URL}/{mandatory['dataSet']}/{mandatory['filter']}/{mandatory['agency']}"
+
+        response = requests.get(url, params=optional)
+
+        return response.json(), response.url

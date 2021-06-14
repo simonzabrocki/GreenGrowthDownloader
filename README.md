@@ -10,7 +10,7 @@
 |---------------|-------------------------------------------------------------------|-------------|---------------|
 | World bank    | https://api.worldbank.org/v2/country/all/indicator/               | OK          | OK            |
 | UNSTAT SDG    | https://unstats.un.org/SDGAPI/v1/sdg/Series/Data                  | OK          | OK            |
-| Climate Watch | https://www.climatewatchdata.org/api/v1/data/historical_emissions | OK          | OK            |
+| Climate Watch | https://www.climatewatchdata.org/api/v1/data/historical_emissions | BUG         | BUG           |
 | OECD          | http://stats.oecd.org/SDMX-JSON/data/                             | TO DO       | TO DO         |
 
 # Installation
