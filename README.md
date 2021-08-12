@@ -43,7 +43,7 @@ data = download(API_name, config, raw=False)
 ```
 
 # Quick Start for Green Growth Index
-(To be improved)
+**(Not up to date, to be removed)**
 
 A small command line tool is available to bulk download data. The tool lets you define an API name and a path.
 For example:
